@@ -1,27 +1,32 @@
 {
-    "name": "budget-tracker",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "dependencies": {
-      "compression": "^1.7.4",
-      "express": "^4.17.1",
-      "mongoose": "^5.13.3",
-      "morgan": "^1.10.0"
-    },
-    "devDependencies": {},
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node server.js"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/budget-tracker.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/budget-tracker/issues"
-    },
-    "homepage": "https://github.com/budget-tracker#readme"
-  }
+  "name": "budgettracker",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
+    "webpack": "^5.46.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "webpack": "webpack --watch",
+    "build": "webpack",
+    "start:dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/budgettracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/budgettracker/issues"
+  },
+  "homepage": "https://github.com/budgettracker#readme",
+  "description": ""
+}
