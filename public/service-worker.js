@@ -22,8 +22,8 @@ const FILES_TO_CACHE = [
 
 self.addEventListener('install', function (e) {
 e.waitUntil(
-    caches.open(CACHE_NAME).then(function (cache) {
-        console.log('installing cache : ' + CACHE_NAME)
+    caches.open(CACHE_NAME).then(cache => {
+        console.log('The cache has been loaded');
         return cache.addAll(FILES_TO_CACHE)
     })
 );
@@ -31,7 +31,7 @@ e.waitUntil(
 self.skipWaiting();
 });
 
-self.addEventListener('activate', function (e) {
+/*self.addEventListener('activate', function (e) {
     e.waitUntil(
         caches.keys().then(function (keyList) {
             let cacheKeeplist = keyList.filter(function (key) {
@@ -74,7 +74,7 @@ caches.match(e.request).then(function (request) {
         return fetch(e.request)
     }
 })
-})
+})*/
 
 
 
