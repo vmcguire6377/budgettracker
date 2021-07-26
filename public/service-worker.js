@@ -1,4 +1,4 @@
-//const APP_PREFIX = 'budgettracker';
+const APP_PREFIX = 'budgettracker';
 //const VERSION = 'version_01';
 const CACHE_NAME = 'budgettracker-cache-v1';
 const DATA_CACHE_NAME = 'budget-cache-v1'
@@ -22,7 +22,7 @@ const FILES_TO_CACHE = [
 
 self.addEventListener('install', function (e) {
 e.waitUntil(
-    caches.open(budgettracker-cache-v1).then(function (cache) {
+    caches.open(CACHE_NAME).then(function (cache) {
         console.log('installing cache : ' + CACHE_NAME)
         return cache.addAll(FILES_TO_CACHE)
     })
