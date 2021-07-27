@@ -20,8 +20,7 @@ request.onsuccess = function(event) {
 
     //check if app is online, if yes run uploadEntry() function to send all local db data to api
    if (navigator.onLine) {
-       //we haven't created this yet, but will soon, so comment it out for now
-       //uploadEntry();
+       uploadEntry();
    } 
 };
 
@@ -63,7 +62,7 @@ getAll.onsuccess = function() {
             body: JSON.stringify(getAll.result),
             header: {
                 Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'applcation/json'
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())
@@ -86,3 +85,5 @@ getAll.onsuccess = function() {
         })
     }
 }};
+
+window.addEventListener("online", uploadEntry);
