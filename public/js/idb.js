@@ -58,7 +58,7 @@ function uploadEntry() {
 getAll.onsuccess = function() {
     //if there was data in indexDB;s store, let's send it to the api server
     if (getAll.result.length > 0) {
-        fetch('/api/entry', {
+        fetch('/api/transaction', {
             method: 'POST',
             body: JSON.stringify(getAll.result),
             header: {
@@ -76,14 +76,13 @@ getAll.onsuccess = function() {
             //access the new_entry object store
             const entryObjectStore = transaction.objectStore('new_entry');
             //clear all items in the store
-            entryObjectStore.clear();
+            ObjectStore.clear();
             
-            alert('All saved transactions have been submitted!');
+            alert('All saved transaction have been submitted!');
 
         })
         .catch(err => {
             console.log(err);
-        });
+        })
     }
-};
-}
+}};

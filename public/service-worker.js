@@ -4,10 +4,11 @@ const CACHE_NAME = 'budgettracker-cache-v1';
 const DATA_CACHE_NAME = 'budget-cache-v1'
 
 const FILES_TO_CACHE = [
-    "./index.html",
-    "./public/css/style.css",
-    "./models/transaction.js",
-    "./public/manifest.json",
+    '/',
+    '/public/index.html',
+    '/public/css/style.css',
+    '/models/transaction.js',
+    '/public/manifest.json',
     '/public/icons/icon-72x72.png',
     '/public/icons/icon-96x96.png',
     '/public/icons/icon-128x128.png',
@@ -31,6 +32,44 @@ e.waitUntil(
 self.skipWaiting();
 });
 
+self.addEventListener('activate', function (e) {
+    e.waitUntil(
+        caches.keys().then(keyList => {
+            return Promise.all(
+                keyList.map(key => {
+                    if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                        console.log('The cache has been updated', key);
+                        return caches.delete(key);
+                    }
+        })
+        );
+        })
+    );
+    self.clients.claim();
+});
+
+self.addEventListener('fetch', function (e) {
+    if (e.request.url.includes('/api/')) {
+        e.respondWith(
+            caches
+                .open(DATA_CACHE_NAME).then(cache => {
+                    return fetch(e.request)
+                        .then(response => {
+                           // keep the response in the cache
+                            if (response.status === 200) {
+                                cache.put(e.request.url, response.clone());
+                            }
+                            return response;
+                        })
+                        .catch(err => {
+                            
+                            return cache.match(e.request);
+                        });
+                })
+                .catch(err => console.log(err))
+        );
+        return;
+    }
 
 
 
