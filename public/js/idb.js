@@ -67,7 +67,7 @@ getAll.onsuccess = function() {
         })
         .then(response => response.json())
         .then(serverResponse => {
-            if (serverResponse.messgae) {
+            if (serverResponse.message) {
                 throw new Error(serverResponse);
             }
             //open one more entry
@@ -75,7 +75,7 @@ getAll.onsuccess = function() {
             //access the new_entry object store
             const entryObjectStore = transaction.objectStore('new_entry');
             //clear all items in the store
-            ObjectStore.clear();
+            entryObjectStore.clear();
             
             alert('All saved transaction have been submitted!');
 
